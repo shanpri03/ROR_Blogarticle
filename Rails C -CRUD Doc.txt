@@ -1,0 +1,713 @@
+S D:\Priya\RubyonRails\blogproj> rails generate migration create_blgarticle
+      invoke  active_record
+      create    db/migrate/20230111183602_create_blgarticle.rb
+PS D:\Priya\RubyonRails\blogproj> rails db:migrate
+== 20230111183602 CreateBlgarticle: migrating =================================
+-- create_table(:blgarticles)
+   -> 0.0063s
+== 20230111183602 CreateBlgarticle: migrated (0.0069s) ========================
+
+PS D:\Priya\RubyonRails\blogproj> rails c
+Loading development environment (Rails 7.0.4)
+irb(main):001:0> Blgarticle.all
+  Blgarticle Load (0.3ms)  SELECT "blgarticles".* FROM "blgarticles"
+=> []
+irb(main):002:0> Blgarticle.create(atitle: "How to work Remotely while travelling")
+  TRANSACTION (1.6ms)  begin transaction
+  Blgarticle Create (9.7ms)  INSERT INTO "blgarticles" ("atitle", "created_at", "updated_at") VALUES (?, ?, ?)  [["atitle", "How to work Remotely while travelling"], ["created_at", "2023-01-11 18:47:05.667531"], ["updated_at", "2023-01-11 18:47:05.667531"]]
+  TRANSACTION (142.4ms)  commit transaction        
+=>                                                 
+#<Blgarticle:0x000001d0e25be3e8                    
+ id: 1,                                      
+ atitle: "How to work Remotely while travelling",
+ created_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00,
+ updated_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00>
+irb(main):003:0> Blgarticle.create(atitle: "Amazing places to travel in 2023")
+  TRANSACTION (9.4ms)  begin transaction
+  Blgarticle Create (23.0ms)  INSERT INTO "blgarticles" ("atitle", "created_at", "updated_at") VALUES (?, ?, ?)  [["atitle", "Amazing places to travel in 2023"], ["created_at", "2023-01-11 18:48:09.048929"], ["updated_at", "2023-01-11 18:48:09.048929"]]
+  TRANSACTION (430.6ms)  commit transaction                                                        
+=>                                                                                                 
+#<Blgarticle:0x000001d0e000e3a0                                                                    
+ id: 2,                                                                                            
+ atitle: "Amazing places to travel in 2023",                                                       
+ created_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00,                                       
+ updated_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00>                                       
+irb(main):004:0> q = Blgarticle.new
+=> #<Blgarticle:0x000001d0e000c6e0 id: nil, atitle: nil, created_at: nil, updated_at: nil>
+irb(main):005:0> q.atitle = "Best Countries to visit in Asia"
+=> "Best Countries to visit in Asia"
+irb(main):006:0> q.atitle = "How to start a travel blog"
+=> "How to start a travel blog"
+irb(main):007:0> q.atitle = "Underrated destinations to visit"
+=> "Underrated destinations to visit"
+irb(main):008:0> q.save
+  TRANSACTION (13.3ms)  begin transaction
+  Blgarticle Create (18.8ms)  INSERT INTO "blgarticles" ("atitle", "created_at", "updated_at") VALUES (?, ?, ?)  [["atitle", "Underrated destinations to visit"], ["created_at", "2023-01-11 18:51:02.510880"], ["updated_at", "2023-01-11 18:51:02.510880"]]
+  TRANSACTION (415.9ms)  commit transaction                   
+=> true
+irb(main):009:0> Blgarticle.all
+  Blgarticle Load (1.6ms)  SELECT "blgarticles".* FROM "blgarticles"
+=> 
+[#<Blgarticle:0x000001d0e000f520
+  id: 1,
+  atitle: "How to work Remotely while travelling",            
+  created_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00, 
+  updated_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00>,                                                                                           
+ #<Blgarticle:0x000001d0e000f3e0
+  id: 2,
+  atitle: "Amazing places to travel in 2023",
+  created_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00>,
+ #<Blgarticle:0x000001d0e000f2a0
+  id: 3,
+  atitle: "Underrated destinations to visit",
+  created_at: Wed, 11 Jan 2023 18:51:02.510880000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:51:02.510880000 UTC +00:00>]
+irb(main):010:0> w = Blgarticle.new
+=> #<Blgarticle:0x000001d0e000b560 id: nil, atitle: nil, created_at: nil, updated_at: nil>
+irb(main):011:0> w.atitle = "How to start a travel blog"
+=> "How to start a travel blog"
+irb(main):012:0> w.save
+  TRANSACTION (9.0ms)  begin transaction
+  Blgarticle Create (8.9ms)  INSERT INTO "blgarticles" ("atitle", "created_at", "updated_at") VALUES (?, ?, ?)  [["atitle", "How to start a travel blog"], ["created_at", "2023-01-11 18:52:15.296335"], ["updated_at", "2023-01-11 18:52:15.296335"]]
+  TRANSACTION (404.2ms)  commit transaction
+=> true
+irb(main):013:0> e = Blgarticle.new
+=> #<Blgarticle:0x000001d0e000e4e0 id: nil, atitle: nil, created_at: nil, updated_at: nil>
+irb(main):014:0> e.atitle = "Best Countries to visit in Asia"
+=> "Best Countries to visit in Asia"
+irb(main):015:0> e.save
+  TRANSACTION (0.1ms)  begin transaction
+  Blgarticle Create (2.7ms)  INSERT INTO "blgarticles" ("atitle", "created_at", "updated_at") VALUES (?, ?, ?)  [["atitle", "Best Countries to visit in Asia"], ["created_at", "2023-01-11 18:52:43.712559"], ["updated_at", "2023-01-11 18:52:43.712559"]]
+  TRANSACTION (57.6ms)  commit transaction
+=> true
+irb(main):016:0> Blgarticle.all
+  Blgarticle Load (1.3ms)  SELECT "blgarticles".* FROM "blgarticles"
+=> 
+[#<Blgarticle:0x000001d0e0008ae0
+  id: 1,
+  atitle: "How to work Remotely while travelling",
+  created_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00>,
+ #<Blgarticle:0x000001d0e00089a0
+  id: 2,
+  atitle: "Amazing places to travel in 2023",
+  created_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00>,
+ #<Blgarticle:0x000001d0e0008860
+  id: 3,
+  atitle: "Underrated destinations to visit",
+  created_at: Wed, 11 Jan 2023 18:51:02.510880000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:51:02.510880000 UTC +00:00>,
+ #<Blgarticle:0x000001d0e0008720
+  id: 4,
+  atitle: "How to start a travel blog",
+  created_at: Wed, 11 Jan 2023 18:52:15.296335000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:52:15.296335000 UTC +00:00>,
+ #<Blgarticle:0x000001d0e00085e0
+  id: 5,
+  atitle: "Best Countries to visit in Asia",
+  created_at: Wed, 11 Jan 2023 18:52:43.712559000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:52:43.712559000 UTC +00:00>]
+irb(main):017:0> Blgarticle.all
+  Blgarticle Load (23.1ms)  SELECT "blgarticles".* FROM "blgarticles"
+=> 
+[#<Blgarticle:0x000001d0e000fca0
+  id: 1,
+  atitle: "How to work Remotely while travelling",
+  created_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00>,
+ #<Blgarticle:0x000001d0e000fb60
+  id: 2,
+  atitle: "Amazing places to travel in 2023",
+  created_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00>,
+ #<Blgarticle:0x000001d0e000fa20
+  id: 3,
+  atitle: "Underrated destinations to visit",
+  created_at: Wed, 11 Jan 2023 18:51:02.510880000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:51:02.510880000 UTC +00:00>,
+ #<Blgarticle:0x000001d0e000f8e0
+  id: 4,
+  atitle: "How to start a travel blog",
+  created_at: Wed, 11 Jan 2023 18:52:15.296335000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:52:15.296335000 UTC +00:00>,
+ #<Blgarticle:0x000001d0e000f7a0
+  id: 5,
+  atitle: "Best Countries to visit in Asia",
+  created_at: Wed, 11 Jan 2023 18:52:43.712559000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:52:43.712559000 UTC +00:00>]
+irb(main):018:0> exit
+PS D:\Priya\RubyonRails\blogproj> rails c
+Loading development environment (Rails 7.0.4)
+irb(main):001:0> Blgarticle.all
+  Blgarticle Load (5.6ms)  SELECT "blgarticles".* FROM "blgarticles"
+=> 
+[#<Blgarticle:0x000001d5d0b45aa8
+  id: 1,
+  atitle: "How to work Remotely while travelling",
+  created_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00,
+  acontent: nil,
+  aimg: nil>,
+ #<Blgarticle:0x000001d5d099f6e0
+  id: 2,
+  atitle: "Amazing places to travel in 2023",
+  created_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00,
+  acontent: nil,
+  aimg: nil>,
+ #<Blgarticle:0x000001d5d099f640
+  id: 3,
+  atitle: "Underrated destinations to visit",
+  created_at: Wed, 11 Jan 2023 18:51:02.510880000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:51:02.510880000 UTC +00:00,
+  acontent: nil,
+  aimg: nil>,
+ #<Blgarticle:0x000001d5d099f5a0
+  id: 4,
+  atitle: "How to start a travel blog",
+  created_at: Wed, 11 Jan 2023 18:52:15.296335000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:52:15.296335000 UTC +00:00,
+  acontent: nil,
+  aimg: nil>,
+ #<Blgarticle:0x000001d5d099f500
+  id: 5,
+  atitle: "Best Countries to visit in Asia",
+  created_at: Wed, 11 Jan 2023 18:52:43.712559000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:52:43.712559000 UTC +00:00,
+  acontent: nil,
+  aimg: nil>]
+irb(main):002:0> Property.find(1)
+(irb):2:in `<main>': uninitialized constant Property (NameError)
+                            
+Property.find(1)            
+^^^^^^^^
+irb(main):003:0> Blgarticles.find(1)
+(irb):3:in `<main>': uninitialized constant Blgarticles (NameError)
+
+Blgarticles.find(1)
+^^^^^^^^^^^
+irb(main):004:0> Blgarticle.find(1)
+  Blgarticle Load (4.7ms)  SELECT "blgarticles".* FROM "blgarticles" WHERE "blgarticles"."id" = ? LIMIT ?  [["id", 1], ["LIMIT", 1]]
+=> 
+#<Blgarticle:0x000001d5d0953178
+ id: 1,
+ atitle: "How to work Remotely while travelling",
+ created_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00,
+ updated_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00,
+ acontent: nil,
+ aimg: nil>
+irb(main):005:0> q = Blogarticle.find(1)
+(irb):5:in `<main>': uninitialized constant Blogarticle (NameError)
+
+q = Blogarticle.find(1)
+    ^^^^^^^^^^^
+Did you mean?  Blgarticle
+irb(main):006:0> q = Blgarticle.find(1)
+  Blgarticle Load (0.5ms)  SELECT "blgarticles".* FROM "blgarticles" WHERE "blgarticles"."id" = ? LIMIT ?  [["id", 1], ["LIMIT", 1]]
+=> 
+#<Blgarticle:0x000001d5d097dae0
+...
+irb(main):007:0> q.acontent
+=> nil
+irb(main):008:0> q.content = "The opportunities for combining travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well."
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/activemodel-7.0.4/lib/active_model/attribute_methods.rb:458:in `method_missing': undefined method `content=' for #<Blgarticle id: 1, atitle: "How to work Remotely while travelling", created_at: "2023-01-11 18:47:05.667531000 +0000", updated_at: "2023-01-11 18:47:05.667531000 +0000", acontent: nil, aimg: nil> (NoMethodError)                                                                                               
+Did you mean?  acontent=                                                                                                                                 
+irb(main):009:0> q.acontent = "The opportunities for combining travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well."
+=> "The opportunities for combining travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. ...
+irb(main):010:0> q.aimg = "image1"
+=> "image1"
+irb(main):011:0> q.save
+  TRANSACTION (17.2ms)  begin transaction
+  Blgarticle Update (40.2ms)  UPDATE "blgarticles" SET "updated_at" = ?, "acontent" = ?, "aimg" = ? WHERE "blgarticles"."id" = ?  [["updated_at", "2023-01-11 19:18:51.640482"], ["acontent", "The opportunities for combining travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well."], ["aimg", "image1"], ["id", 1]]                                                                                                                                              
+  TRANSACTION (167.8ms)  commit transaction
+=> true
+irb(main):012:0> w = Blgarticle.find(2)
+  Blgarticle Load (1.3ms)  SELECT "blgarticles".* FROM "blgarticles" WHERE "blgarticles"."id" = ? LIMIT ?  [["id", 2], ["LIMIT", 1]]
+=> 
+#<Blgarticle:0x000001d5d1f46548
+...
+irb(main):013:0> w.acontent = "The  travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well."
+=> "The  travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a ...
+irb(main):014:0> w.aimg = "image2"
+=> "image2"
+irb(main):015:0> w.save
+  TRANSACTION (15.2ms)  begin transaction
+  Blgarticle Update (19.6ms)  UPDATE "blgarticles" SET "updated_at" = ?, "acontent" = ?, "aimg" = ? WHERE "blgarticles"."id" = ?  [["updated_at", "2023-01-11 19:21:35.466109"], ["acontent", "The  travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well."], ["aimg", "image2"], ["id", 2]]                
+  TRANSACTION (403.4ms)  commit transaction                                                                                                              
+=> true                                                                                                                                                  
+irb(main):016:0> Blgarticle.find(1)                                                                                                                        Blgarticle Load (1.6ms)  SELECT "blgarticles".* FROM "blgarticles" WHERE "blgarticles"."id" = ? LIMIT ?  [["id", 1], ["LIMIT", 1]]
+=>                                                                                                                                                       
+#<Blgarticle:0x000001d5d188d710                                                                                                                          
+ id: 1,
+ atitle: "How to work Remotely while travelling",
+ created_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00,
+ updated_at: Wed, 11 Jan 2023 19:18:51.640482000 UTC +00:00,
+ acontent:
+  "The opportunities for combining travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well.",
+ aimg: "image1">
+irb(main):017:0> Blgarticle.all
+  Blgarticle Load (1.6ms)  SELECT "blgarticles".* FROM "blgarticles"
+=> 
+[#<Blgarticle:0x000001d5d1ee5018
+  id: 1,
+  atitle: "How to work Remotely while travelling",
+  created_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:18:51.640482000 UTC +00:00,
+  acontent:
+   "The opportunities for combining travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well.",
+  aimg: "image1">,
+ #<Blgarticle:0x000001d5d1ee4d98
+  id: 2,
+  atitle: "Amazing places to travel in 2023",
+  created_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:21:35.466109000 UTC +00:00,
+  acontent:
+   "The  travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well.",
+  aimg: "image2">,
+ #<Blgarticle:0x000001d5d1ee4c58
+  id: 3,
+  atitle: "Underrated destinations to visit",
+  created_at: Wed, 11 Jan 2023 18:51:02.510880000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:51:02.510880000 UTC +00:00,
+  acontent: nil,
+  aimg: nil>,
+ #<Blgarticle:0x000001d5d1ee4b18
+  id: 4,
+  atitle: "How to start a travel blog",
+  created_at: Wed, 11 Jan 2023 18:52:15.296335000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:52:15.296335000 UTC +00:00,
+  acontent: nil,
+  aimg: nil>,
+ #<Blgarticle:0x000001d5d1ee49d8
+  id: 5,
+  atitle: "Best Countries to visit in Asia",
+  created_at: Wed, 11 Jan 2023 18:52:43.712559000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 18:52:43.712559000 UTC +00:00,
+  acontent: nil,
+  aimg: nil>]
+irb(main):018:0> e = Blgarticle.find(3)
+  Blgarticle Load (11.9ms)  SELECT "blgarticles".* FROM "blgarticles" WHERE "blgarticles"."id" = ? LIMIT ?  [["id", 3], ["LIMIT", 1]]
+=> 
+#<Blgarticle:0x000001d5d1f408c8
+...
+irb(main):019:0> e.acontent = "Perhaps you could stay in a small rurla village and amaze for getting the taste of a rurla life.So be sure to use your opportunities and get ready to take a deep tour."
+=> "Perhaps you could stay in a small rurla village and amaze for getting the taste of a rurla life.So be sure to use your opportunities and get rea...
+irb(main):020:0> e.aimg = "image3"
+=> "image3"
+irb(main):021:0> e.save
+  TRANSACTION (10.1ms)  begin transaction
+  Blgarticle Update (19.7ms)  UPDATE "blgarticles" SET "updated_at" = ?, "acontent" = ?, "aimg" = ? WHERE "blgarticles"."id" = ?  [["updated_at", "2023-01-11 19:25:11.441348"], ["acontent", "Perhaps you could stay in a small rurla village and amaze for getting the taste of a rurla life.So be sure to use your opportunities and get ready to take a deep tour."], ["aimg", "image3"], ["id", 3]]                                                                   
+  TRANSACTION (430.4ms)  commit transaction                                                                                                              
+=> true                                                                                                                                                  
+irb(main):022:0> r = Blgarticle.find(4)
+  Blgarticle Load (1.4ms)  SELECT "blgarticles".* FROM "blgarticles" WHERE "blgarticles"."id" = ? LIMIT ?  [["id", 4], ["LIMIT", 1]]
+=>                                                                                                                                                       
+#<Blgarticle:0x000001d5d1888350                                                                                                                          
+...
+irb(main):023:0> r.acontent = "The knowledge it shares let you bypass most of the initial issues and can give you a competitive edge when applying for (highly prized!) full remote jobs.Be sure to get health and travel insurance before you leave home. This will give you peace of mind knowing that if something does happen, youre covered."
+=> "The knowledge it shares let you bypass most of the initial issues and can give you a competitive edge when applying for (highly prized!) full re...  
+irb(main):024:0> r.aimg = "image4"
+=> "image4"
+irb(main):025:0> r.savve
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/activemodel-7.0.4/lib/active_model/attribute_methods.rb:458:in `method_missing': undefined method `savve' for #<Blgarticle id: 4, atitle: "How to start a travel blog", created_at: "2023-01-11 18:52:15.296335000 +0000", updated_at: "2023-01-11 18:52:15.296335000 +0000", acontent: "The knowledge it shares let you bypass most of the...", aimg: "image4"> (NoMethodError)
+Did you mean?  save
+               save!
+irb(main):026:0> r.save
+  TRANSACTION (1.5ms)  begin transaction
+  Blgarticle Update (3.8ms)  UPDATE "blgarticles" SET "updated_at" = ?, "acontent" = ?, "aimg" = ? WHERE "blgarticles"."id" = ?  [["updated_at", "2023-01-11 19:26:46.903780"], ["acontent", "The knowledge it shares let you bypass most of the initial issues and can give you a competitive edge when applying for (highly prized!) full remote jobs.Be sure to get health and travel insurance before you leave home. This will give you peace of mind knowing that if something does happen, youre covered."], ["aimg", "image4"], ["id", 4]]
+  TRANSACTION (401.2ms)  commit transaction
+=> true
+irb(main):027:0> t = Blgarticle.find(5)
+  Blgarticle Load (0.8ms)  SELECT "blgarticles".* FROM "blgarticles" WHERE "blgarticles"."id" = ? LIMIT ?  [["id", 5], ["LIMIT", 1]]
+=> 
+#<Blgarticle:0x000001d5d188cbd0
+...
+irb(main):028:0> t.acontent = "If youre doing a housesitting assignment through a platform such as Trusted Housesitters, keep in mind this can be regarded as work by border control or immigration. Even though housesitting is done for free, in a legal sense it still counts as work (its paid with free accommodation). That can mean being denied entry if you dont have a work visa. "
+=> "If youre doing a housesitting assignment through a platform such as Trusted Housesitters, keep in mind this can be regarded as work by border co...  
+irb(main):029:0> t.aimg = "image5"
+=> "image5"
+irb(main):030:0> t.save
+  TRANSACTION (0.1ms)  begin transaction
+  Blgarticle Update (3.7ms)  UPDATE "blgarticles" SET "updated_at" = ?, "acontent" = ?, "aimg" = ? WHERE "blgarticles"."id" = ?  [["updated_at", "2023-01-11 19:27:56.593512"], ["acontent", "If youre doing a housesitting assignment through a platform such as Trusted Housesitters, keep in mind this can be regarded as work by border control or immigration. Even though housesitting is done for free, in a legal sense it still counts as work (its paid with free accommodation). That can mean being denied entry if you dont have a work visa. "], ["aimg", "image5"], ["id", 5]]
+  TRANSACTION (395.0ms)  commit transaction
+=> true
+irb(main):031:0> Blgarticle.all
+  Blgarticle Load (2.5ms)  SELECT "blgarticles".* FROM "blgarticles"
+=> 
+[#<Blgarticle:0x000001d5d1f25280
+  id: 1,
+  atitle: "How to work Remotely while travelling",
+  created_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:18:51.640482000 UTC +00:00,
+  acontent:
+   "The opportunities for combining travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well.",
+  aimg: "image1">,
+ #<Blgarticle:0x000001d5d1f25140
+  id: 2,
+  atitle: "Amazing places to travel in 2023",
+  created_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:21:35.466109000 UTC +00:00,
+  acontent:
+   "The  travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well.",
+  aimg: "image2">,
+ #<Blgarticle:0x000001d5d1f25000
+  id: 3,
+  atitle: "Underrated destinations to visit",
+  created_at: Wed, 11 Jan 2023 18:51:02.510880000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:25:11.441348000 UTC +00:00,
+  acontent:
+   "Perhaps you could stay in a small rurla village and amaze for getting the taste of a rurla life.So be sure to use your opportunities and get ready to take a deep tour.",
+  aimg: "image3">,
+ #<Blgarticle:0x000001d5d1f24ec0
+  id: 4,
+  atitle: "How to start a travel blog",
+  created_at: Wed, 11 Jan 2023 18:52:15.296335000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:26:46.903780000 UTC +00:00,
+  acontent:
+   "The knowledge it shares let you bypass most of the initial issues and can give you a competitive edge when applying for (highly prized!) full remote jobs.Be sure to get health and travel insurance before you leave home. This will give you peace of mind knowing that if something does happen, youre covered.",
+  aimg: "image4">,
+ #<Blgarticle:0x000001d5d1f24d80
+  id: 5,
+  atitle: "Best Countries to visit in Asia",
+  created_at: Wed, 11 Jan 2023 18:52:43.712559000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:27:56.593512000 UTC +00:00,
+  acontent:
+   "If youre doing a housesitting assignment through a platform such as Trusted Housesitters, keep in mind this can be regarded as work by border control or immigration. Even though housesitting is done for free, in a legal sense it still counts as work (its paid with free accommodation). That can mean being denied entry if you dont have a work visa. ",
+  aimg: "image5">]
+irb(main):032:0> Blgarticle.count
+  Blgarticle Count (28.7ms)  SELECT COUNT(*) FROM "blgarticles"
+=> 5                                                                  
+irb(main):033:0> Blgarticle.where(aimg: "image5")
+  Blgarticle Load (7.6ms)  SELECT "blgarticles".* FROM "blgarticles" WHERE "blgarticles"."aimg" = ?  [["aimg", "image5"]]
+=>                                                                    
+[#<Blgarticle:0x000001d5d1f4b408                                      
+  id: 5,                                                              
+  atitle: "Best Countries to visit in Asia",                          
+  created_at: Wed, 11 Jan 2023 18:52:43.712559000 UTC +00:00,         
+  updated_at: Wed, 11 Jan 2023 19:27:56.593512000 UTC +00:00,         
+  acontent:                                                           
+   "If youre doing a housesitting assignment through a platform such as Trusted Housesitters, keep in mind this can be regarded as work by border control or immigration. Even though housesitting is done for free, in a legal sense it still counts as work (its paid with free accommodation). That can mean being denied entry if you dont have a work visa. ",                     
+  aimg: "image5">]                                                    
+irb(main):034:0> h = Blgarticle.new
+=> #<Blgarticle:0x000001d5d1f494c8 id: nil, atitle: nil, created_at: nil, updated_at: nil, acontent: nil, aimg: nil>
+irb(main):035:0> Blgarticle.all
+  Blgarticle Load (16.4ms)  SELECT "blgarticles".* FROM "blgarticles"
+=> 
+[#<Blgarticle:0x000001d5d1f4eb08
+  id: 1,
+  atitle: "How to work Remotely while travelling",
+  created_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:18:51.640482000 UTC +00:00,
+  acontent:
+   "The opportunities for combining travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well.",
+  aimg: "image1">,
+ #<Blgarticle:0x000001d5d1f4e9c8
+  id: 2,
+  atitle: "Amazing places to travel in 2023",
+  created_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:21:35.466109000 UTC +00:00,
+  acontent:
+   "The  travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well.",
+  aimg: "image2">,
+ #<Blgarticle:0x000001d5d1f4e888
+  id: 3,
+  atitle: "Underrated destinations to visit",
+  created_at: Wed, 11 Jan 2023 18:51:02.510880000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:25:11.441348000 UTC +00:00,
+  acontent:
+   "Perhaps you could stay in a small rurla village and amaze for getting the taste of a rurla life.So be sure to use your opportunities and get ready to take a deep tour.",
+  aimg: "image3">,
+ #<Blgarticle:0x000001d5d1f4e748
+  id: 4,
+  atitle: "How to start a travel blog",
+  created_at: Wed, 11 Jan 2023 18:52:15.296335000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:26:46.903780000 UTC +00:00,
+  acontent:
+   "The knowledge it shares let you bypass most of the initial issues and can give you a competitive edge when applying for (highly prized!) full remote jobs.Be sure to get health and travel insurance before you leave home. This will give you peace of mind knowing that if something does happen, youre covered.",
+  aimg: "image4">,
+ #<Blgarticle:0x000001d5d1f4e608
+  id: 5,
+  atitle: "Best Countries to visit in Asia",
+  created_at: Wed, 11 Jan 2023 18:52:43.712559000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:27:56.593512000 UTC +00:00,
+  acontent:
+   "If youre doing a housesitting assignment through a platform such as Trusted Housesitters, keep in mind this can be regarded as work by border control or immigration. Even though housesitting is done for free, in a legal sense it still counts as work (its paid with free accommodation). That can mean being denied entry if you dont have a work visa. ",
+  aimg: "image5">]
+irb(main):036:0> h.save
+  TRANSACTION (9.9ms)  begin transaction
+  Blgarticle Create (49.1ms)  INSERT INTO "blgarticles" ("atitle", "created_at", "updated_at", "acontent", "aimg") VALUES (?, ?, ?, ?, ?)  [["atitle", nil], ["created_at", "2023-01-11 19:33:29.767079"], ["updated_at", "2023-01-11 19:33:29.767079"], ["acontent", nil], ["aimg", nil]]
+  TRANSACTION (41.7ms)  commit transaction
+=> true
+irb(main):037:0> Blgarticle.all
+  Blgarticle Load (0.4ms)  SELECT "blgarticles".* FROM "blgarticles"
+=> 
+[#<Blgarticle:0x000001d5d1a04ee0
+  id: 1,
+  atitle: "How to work Remotely while travelling",
+  created_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:18:51.640482000 UTC +00:00,
+  acontent:
+   "The opportunities for combining travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well.",
+  aimg: "image1">,
+ #<Blgarticle:0x000001d5d1a04da0
+  id: 2,
+  atitle: "Amazing places to travel in 2023",
+  created_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00,                                                                                            
+  updated_at: Wed, 11 Jan 2023 19:21:35.466109000 UTC +00:00,
+  acontent:
+   "The  travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well.",
+  aimg: "image2">,
+ #<Blgarticle:0x000001d5d1a04c60
+  id: 3,
+  atitle: "Underrated destinations to visit",
+  created_at: Wed, 11 Jan 2023 18:51:02.510880000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:25:11.441348000 UTC +00:00,
+  acontent:
+   "Perhaps you could stay in a small rurla village and amaze for getting the taste of a rurla life.So be sure to use your opportunities and get ready to take a deep tour.",
+  aimg: "image3">,
+ #<Blgarticle:0x000001d5d1a04b20
+  id: 4,
+  atitle: "How to start a travel blog",
+  created_at: Wed, 11 Jan 2023 18:52:15.296335000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:26:46.903780000 UTC +00:00,
+  acontent:
+   "The knowledge it shares let you bypass most of the initial issues and can give you a competitive edge when applying for (highly prized!) full remote jobs.Be sure to get health and travel insurance before you leave home. This will give you peace of mind knowing that if something does happen, youre covered.",
+  aimg: "image4">,
+ #<Blgarticle:0x000001d5d1a049e0
+  id: 5,
+  atitle: "Best Countries to visit in Asia",
+  created_at: Wed, 11 Jan 2023 18:52:43.712559000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:27:56.593512000 UTC +00:00,
+  acontent:
+   "If youre doing a housesitting assignment through a platform such as Trusted Housesitters, keep in mind this can be regarded as work by border control or immigration. Even though housesitting is done for free, in a legal sense it still counts as work (its paid with free accommodation). That can mean being denied entry if you dont have a work visa. ",
+  aimg: "image5">,
+ #<Blgarticle:0x000001d5d1a048a0
+  id: 6,
+  atitle: nil,
+  created_at: Wed, 11 Jan 2023 19:33:29.767079000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:33:29.767079000 UTC +00:00,
+  acontent: nil,
+  aimg: nil>]
+irb(main):038:0> p = Blgarticle.find(6)
+  Blgarticle Load (4.7ms)  SELECT "blgarticles".* FROM "blgarticles" WHERE "blgarticles"."id" = ? LIMIT ?  [["id", 6], ["LIMIT", 1]]
+=>                                                           
+#<Blgarticle:0x000001d5d188c810                              
+...                                                          
+irb(main):039:0> p.destroy
+  TRANSACTION (10.3ms)  begin transaction
+  Blgarticle Destroy (7.9ms)  DELETE FROM "blgarticles" WHERE "blgarticles"."id" = ?  [["id", 6]]
+  TRANSACTION (79.6ms)  commit transaction       
+=>                                               
+#<Blgarticle:0x000001d5d188c810                  
+ id: 6,                                          
+ atitle: nil,                                    
+ created_at: Wed, 11 Jan 2023 19:33:29.767079000 UTC +00:00,
+ updated_at: Wed, 11 Jan 2023 19:33:29.767079000 UTC +00:00,
+ acontent: nil,                                  
+ aimg: nil>                                      
+irb(main):040:0> Blgarticle.all
+  Blgarticle Load (1.3ms)  SELECT "blgarticles".* FROM "blgarticles"
+=> 
+[#<Blgarticle:0x000001d5d188b550
+  id: 1,
+  atitle: "How to work Remotely while travelling",
+  created_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00,                                                                                            
+  updated_at: Wed, 11 Jan 2023 19:18:51.640482000 UTC +00:00,
+  acontent:
+   "The opportunities for combining travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well.",
+  aimg: "image1">,
+ #<Blgarticle:0x000001d5d188b410
+  id: 2,
+  atitle: "Amazing places to travel in 2023",
+  created_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:21:35.466109000 UTC +00:00,
+  acontent:
+   "The  travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well.",
+  aimg: "image2">,
+ #<Blgarticle:0x000001d5d188b2d0
+  id: 3,
+  atitle: "Underrated destinations to visit",
+  created_at: Wed, 11 Jan 2023 18:51:02.510880000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:25:11.441348000 UTC +00:00,
+  acontent:
+   "Perhaps you could stay in a small rurla village and amaze for getting the taste of a rurla life.So be sure to use your opportunities and get ready to take a deep tour.",
+  aimg: "image3">,
+ #<Blgarticle:0x000001d5d188b190
+  id: 4,
+  atitle: "How to start a travel blog",
+  created_at: Wed, 11 Jan 2023 18:52:15.296335000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:26:46.903780000 UTC +00:00,
+  acontent:
+   "The knowledge it shares let you bypass most of the initial issues and can give you a competitive edge when applying for (highly prized!) full remote jobs.Be sure to get health and travel insurance before you leave home. This will give you peace of mind knowing that if something does happen, youre covered.",
+  aimg: "image4">,
+ #<Blgarticle:0x000001d5d188b050
+  id: 5,
+  atitle: "Best Countries to visit in Asia",
+  created_at: Wed, 11 Jan 2023 18:52:43.712559000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:27:56.593512000 UTC +00:00,
+  acontent:
+   "If youre doing a housesitting assignment through a platform such as Trusted Housesitters, keep in mind this can be regarded as work by border control or immigration. Even though housesitting is done for free, in a legal sense it still counts as work (its paid with free accommodation). That can mean being denied entry if you dont have a work visa. ",
+  aimg: "image5">]
+irb(main):041:0> reload!
+Reloading...
+=> true
+irb(main):042:0> p = Blgarticle.find(1)
+  Blgarticle Load (0.3ms)  SELECT "blgarticles".* FROM "blgarticles" WHERE "blgarticles"."id" = ? LIMIT ?  [["id", 1], ["LIMIT", 1]]
+=> 
+#<Blgarticle:0x000001d5d12b6a58
+...
+irb(main):043:0> p.aimg
+=> "image1"
+irb(main):044:0> p.img = "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/activemodel-7.0.4/lib/active_model/attribute_methods.rb:458:in `method_missing': undefined method `img=' for #<Blgarticle id: 1, atitle: "How to work Remotely while travelling", created_at: "2023-01-11 18:47:05.667531000 +0000", updated_at: "2023-01-11 19:18:51.640482000 +0000", acontent: "The opportunities for combining travel and work ha...", aimg: "image1"> (NoMethodError)
+Did you mean?  aimg=
+irb(main):045:0> p.aimg = "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+=> "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+irb(main):046:0> p.save
+  TRANSACTION (0.9ms)  begin transaction
+  Blgarticle Update (5.6ms)  UPDATE "blgarticles" SET "updated_at" = ?, "aimg" = ? WHERE "blgarticles"."id" = ?  [["updated_at", "2023-01-11 20:09:57.831644"], ["aimg", "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"], ["id", 1]]
+  TRANSACTION (429.5ms)  commit transaction
+=> true
+irb(main):047:0> p = Blgarticle.find(1)
+  Blgarticle Load (1.5ms)  SELECT "blgarticles".* FROM "blgarticles" WHERE "blgarticles"."id" = ? LIMIT ?  [["id", 1], ["LIMIT", 1]]
+=> 
+#<Blgarticle:0x000001d5d1f4d348
+...
+irb(main):048:0> Blgarticle.all
+  Blgarticle Load (0.3ms)  SELECT "blgarticles".* FROM "blgarticles"
+=> 
+[#<Blgarticle:0x000001d5d1f4b7c8
+  id: 1,                                                                                                                                                 
+  atitle: "How to work Remotely while travelling",
+  created_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 20:09:57.831644000 UTC +00:00,
+  acontent:
+   "The opportunities for combining travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well.",
+  aimg: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg">,
+ #<Blgarticle:0x000001d5d1f4b688
+  id: 2,
+  atitle: "Amazing places to travel in 2023",
+  created_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:21:35.466109000 UTC +00:00,
+  acontent:
+   "The  travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well.",
+  aimg: "image2">,
+ #<Blgarticle:0x000001d5d1f4b548
+  id: 3,
+  atitle: "Underrated destinations to visit",
+  created_at: Wed, 11 Jan 2023 18:51:02.510880000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:25:11.441348000 UTC +00:00,
+  acontent:
+   "Perhaps you could stay in a small rurla village and amaze for getting the taste of a rurla life.So be sure to use your opportunities and get ready to take a deep tour.",
+  aimg: "image3">,
+ #<Blgarticle:0x000001d5d1f4b188
+  id: 4,
+  atitle: "How to start a travel blog",
+  created_at: Wed, 11 Jan 2023 18:52:15.296335000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:26:46.903780000 UTC +00:00,
+  acontent:
+   "The knowledge it shares let you bypass most of the initial issues and can give you a competitive edge when applying for (highly prized!) full remote jobs.Be sure to get health and travel insurance before you leave home. This will give you peace of mind knowing that if something does happen, youre covered.",
+  aimg: "image4">,
+ #<Blgarticle:0x000001d5d1f4b048
+  id: 5,
+  atitle: "Best Countries to visit in Asia",
+  created_at: Wed, 11 Jan 2023 18:52:43.712559000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 19:27:56.593512000 UTC +00:00,
+  acontent:
+   "If youre doing a housesitting assignment through a platform such as Trusted Housesitters, keep in mind this can be regarded as work by border control or immigration. Even though housesitting is done for free, in a legal sense it still counts as work (its paid with free accommodation). That can mean being denied entry if you dont have a work visa. ",
+  aimg: "image5">]
+irb(main):049:0> q = Blgarticle.find(2)
+  Blgarticle Load (8.7ms)  SELECT "blgarticles".* FROM "blgarticles" WHERE "blgarticles"."id" = ? LIMIT ?  [["id", 2], ["LIMIT", 1]]
+=>                   
+#<Blgarticle:0x000001d5d1f4fc88
+...
+irb(main):050:0> q.aimg = "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=600"
+=> "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=600"
+irb(main):051:0> q.save
+  TRANSACTION (5.3ms)  begin transaction
+  Blgarticle Update (10.8ms)  UPDATE "blgarticles" SET "updated_at" = ?, "aimg" = ? WHERE "blgarticles"."id" = ?  [["updated_at", "2023-01-11 20:12:29.196366"], ["aimg", "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=600"], ["id", 2]]
+  TRANSACTION (58.2ms)  commit transaction
+=> true
+irb(main):052:0> h = Blgarticle.find(3)
+  Blgarticle Load (0.4ms)  SELECT "blgarticles".* FROM "blgarticles" WHERE "blgarticles"."id" = ? LIMIT ?  [["id", 3], ["LIMIT", 1]]
+=> 
+#<Blgarticle:0x000001d5d1ee5298
+...
+irb(main):053:0> h.aimg = "https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&w=600"
+=> "https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&w=600"
+irb(main):054:0> h.save
+  TRANSACTION (0.1ms)  begin transaction
+  Blgarticle Update (5.2ms)  UPDATE "blgarticles" SET "updated_at" = ?, "aimg" = ? WHERE "blgarticles"."id" = ?  [["updated_at", "2023-01-11 20:13:12.783016"], ["aimg", "https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&w=600"], ["id", 3]]
+  TRANSACTION (59.7ms)  commit transaction
+=> true
+irb(main):055:0> t = Blgarticle.find(4)
+  Blgarticle Load (0.3ms)  SELECT "blgarticles".* FROM "blgarticles" WHERE "blgarticles"."id" = ? LIMIT ?  [["id", 4], ["LIMIT", 1]]
+=> 
+#<Blgarticle:0x000001d5d1ecd0d0
+...
+irb(main):056:0> t.aimg = "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg?auto=compress&cs=tinysrgb&w=600"
+=> "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg?auto=compress&cs=tinysrgb&w=600"
+irb(main):057:0> t.save
+  TRANSACTION (0.1ms)  begin transaction
+  Blgarticle Update (3.8ms)  UPDATE "blgarticles" SET "updated_at" = ?, "aimg" = ? WHERE "blgarticles"."id" = ?  [["updated_at", "2023-01-11 20:14:43.321927"], ["aimg", "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg?auto=compress&cs=tinysrgb&w=600"], ["id", 4]]
+  TRANSACTION (406.4ms)  commit transaction
+=> true
+irb(main):058:0> j = Blgarticle.find(5)
+  Blgarticle Load (0.2ms)  SELECT "blgarticles".* FROM "blgarticles" WHERE "blgarticles"."id" = ? LIMIT ?  [["id", 5], ["LIMIT", 1]]
+=>                   
+#<Blgarticle:0x000001d5d1eceb10
+...
+irb(main):059:0> j.aimg = "https://images.pexels.com/photos/919278/pexels-photo-919278.jpeg?auto=compress&cs=tinysrgb&w=600"
+=> "https://images.pexels.com/photos/919278/pexels-photo-919278.jpeg?auto=compress&cs=tinysrgb&w=600"
+irb(main):060:0> j.save
+  TRANSACTION (0.1ms)  begin transaction
+  Blgarticle Update (2.7ms)  UPDATE "blgarticles" SET "updated_at" = ?, "aimg" = ? WHERE "blgarticles"."id" = ?  [["updated_at", "2023-01-11 20:15:37.250788"], ["aimg", "https://images.pexels.com/photos/919278/pexels-photo-919278.jpeg?auto=compress&cs=tinysrgb&w=600"], ["id", 5]]
+  TRANSACTION (54.2ms)  commit transaction
+=> true
+irb(main):061:0> Blgarticle.all
+  Blgarticle Load (0.2ms)  SELECT "blgarticles".* FROM "blgarticles"
+=> 
+[#<Blgarticle:0x000001d5d188dad0
+  id: 1,
+  atitle: "How to work Remotely while travelling",
+  created_at: Wed, 11 Jan 2023 18:47:05.667531000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 20:09:57.831644000 UTC +00:00,
+  acontent:
+   "The opportunities for combining travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well.",
+  aimg: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg">,
+ #<Blgarticle:0x000001d5d188d990
+  id: 2,
+  atitle: "Amazing places to travel in 2023",
+  created_at: Wed, 11 Jan 2023 18:48:09.048929000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 20:12:29.196366000 UTC +00:00,
+  acontent:
+   "The  travel and work have never ever beensp clear . But despite more companies embaracing the possibiliteis of this. You can choose to become a full digital nomad and smaller remote trips oofer many advantages as well.",
+  aimg: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=600">,
+ #<Blgarticle:0x000001d5d188d850
+  id: 3,
+  atitle: "Underrated destinations to visit",
+  created_at: Wed, 11 Jan 2023 18:51:02.510880000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 20:13:12.783016000 UTC +00:00,
+  acontent:
+   "Perhaps you could stay in a small rurla village and amaze for getting the taste of a rurla life.So be sure to use your opportunities and get ready to take a deep tour.",
+  aimg: "https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&w=600">,
+ #<Blgarticle:0x000001d5d188d710
+  id: 4,
+  atitle: "How to start a travel blog",
+  created_at: Wed, 11 Jan 2023 18:52:15.296335000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 20:14:43.321927000 UTC +00:00,
+  acontent:
+   "The knowledge it shares let you bypass most of the initial issues and can give you a competitive edge when applying for (highly prized!) full remote jobs.Be sure to get health and travel insurance before you leave home. This will give you peace of mind knowing that if something does happen, youre covered.",
+  aimg: "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg?auto=compress&cs=tinysrgb&w=600">,
+ #<Blgarticle:0x000001d5d188d5d0
+  id: 5,
+  atitle: "Best Countries to visit in Asia",
+  created_at: Wed, 11 Jan 2023 18:52:43.712559000 UTC +00:00,
+  updated_at: Wed, 11 Jan 2023 20:15:37.250788000 UTC +00:00,
+  acontent:
+   "If youre doing a housesitting assignment through a platform such as Trusted Housesitters, keep in mind this can be regarded as work by border control or immigration. Even though housesitting is done for free, in a legal sense it still counts as work (its paid with free accommodation). That can mean being denied entry if you dont have a work visa. ",
+  aimg: "https://images.pexels.com/photos/919278/pexels-photo-919278.jpeg?auto=compress&cs=tinysrgb&w=600">]
+irb(main):062:0> exit
+PS D:\Priya\RubyonRails\blogproj>
